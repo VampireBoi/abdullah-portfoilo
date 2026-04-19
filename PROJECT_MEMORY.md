@@ -91,6 +91,12 @@ Based on provided image reference (Cyberpunk/Vibrant aesthetic):
 - Easy to add new projects without code changes
 - Template-based project detail pages
 
+#### Hosting & Routing (GitHub Pages)
+- Deployed to GitHub Pages under base path `/abdullah-portfoilo/`.
+- Vite configured with `base: mode === 'production' ? '/abdullah-portfoilo/' : '/'` so assets resolve correctly in production.
+- Uses `HashRouter` so internal routes (e.g. `#/projects/ik-animation-tool`) are safe to open directly and on refresh.
+- All project asset paths in `projects.json` are relative (no `public/` prefix) and combined with `import.meta.env.BASE_URL` at usage sites.
+
 ### Key Requirements Tracking
 
 #### Header Requirements
@@ -176,6 +182,7 @@ Based on provided image reference (Cyberpunk/Vibrant aesthetic):
 - Section includes a `BACK TO THE TOP` button that smooth-scrolls back to the Intro section
 - Profile photo and contacts grid are vertically centered; vertical padding reduced so the section stays compact
 - Header nav "Contacts" item scrolls directly to this About section
+ - Profile photo now uses a base-aware, encoded URL for GitHub Pages compatibility (spaces handled via `encodeURI` and `import.meta.env.BASE_URL`).
 
 ### Project Detail Pages (IK Animation Tool + Stylized Pipeline + Template)
 - First project detail page implemented for **IK Animation Tool** at `/projects/ik-animation-tool`
@@ -193,21 +200,6 @@ Based on provided image reference (Cyberpunk/Vibrant aesthetic):
     - Alternating alignment (left/right) down the page
     - Entrance animations via Framer Motion: text slides down + fades in; image fades in slightly after
     - `index` prop per block for subtle top-to-bottom stagger
-- Stylized pipeline specifics:
-  - Driven by `project-5` in `projects.json` (tags include `graphics programming`)
-  - Copy explains the multi-layer Godot 4 post-processing pipeline (depth-correct layer compositing, per-layer palettes, dot matrix screen effect, bloom, lens flare, outline shader, exposed artist controls)
-  - Text explicitly notes that while the demo uses three layers, the architecture supports any number of layers
-  - All 5 `MediaBlock`s have wired `imageSrc`, `imageAlt`, and contextual captions using GIFs from `public/projects/Stylized Art Style Pipeline/`
-- Navigation behavior:
-  - Header buttons use `navigate('/', { state: { scrollTo: id } })` from any route
-  - `HomePage` reads `location.state.scrollTo` and smooth-scrolls to Intro, Work, Career, or About
-- Reuse strategy for future project pages:
-  - Add a new entry in `projects.json` with id, title, summary, tags, categories, thumbnail, `backgroundGif`, `projectPage`, optional `githubUrl`, etc.
-  - Create a new page component in `src/pages/` mirroring the existing pattern
-  - Register a new React Router route in `App.jsx` and point the project card's `projectPage` to that path
-  - Copy the hero/intro card + `MediaBlock` pattern, swap text and media assets only
-
-### Recent Data & Content Tweaks
 - Projects data (`src/data/projects.json`):
   - Renumbered/reordered IDs so `project-2` is Keep Tho Flow, `project-3` is Leafy Ascent, `project-4` is IK Animation Tool (internal page), and `project-5` is Stylized Art Style Pipeline (internal page)
   - Stylized pipeline project:
@@ -223,9 +215,15 @@ Based on provided image reference (Cyberpunk/Vibrant aesthetic):
   - Achievements trimmed to key highlights (CS bachelor + 15k+ followers)
   - Career `subsections` now hide the Jobs column (`visible: false`) while keeping Education and Skills visible
   - Spoken languages list reduced to Arabic and English in `SKILL_CATEGORIES`
+ - Hosting & assets (2026-04-19):
+   - All project thumbnails and GIFs are referenced without `public/` in `projects.json` and combined with `import.meta.env.BASE_URL` where used, so paths work both locally and on GitHub Pages.
+   - About profile image path updated to use `encodeURI` + `import.meta.env.BASE_URL` so it loads correctly on GitHub Pages despite spaces in the directory name.
+   - Global `html { scroll-behavior: smooth; }` removed from `index.css`; smooth scrolling is now only triggered intentionally via JS (`scrollIntoView({ behavior: 'smooth' })`).
+   - `HomePage` adds scroll persistence for `/` using `sessionStorage.homeScrollY` with `useLayoutEffect` + `useEffect`, while still honoring explicit section jumps via `location.state.scrollTo`.
 
 ## Development Timeline
 
+- **2026-04-19**: Finalized GitHub Pages routing with `HashRouter` and base-aware asset paths, unified project hero backgrounds (clipping, gradient, and correct GIFs), updated Work carousel so internal project pages open in new tabs using hash URLs, removed global CSS smooth scroll, and added controlled home-page scroll persistence so manual refreshes generally restore the previous section without long animated jumps.
 - **2026-04-15**: Added per-subsection visibility flags for Work and Career, per-card timeframe/backgroundWeight/locked behavior, locked-card background clearing, odd-count carousel centering, tightened Career padding, and updated About content/links/profile photo docs
 - **2026-04-14**: Implemented About section (profile, achievements, contacts, back-to-top), tuned Career/Work scroll animations, and fixed ProjectCarousel/Header React warnings
 - **2026-04-13 03:19 AM**: User updated background bar (800px height, 30%/70% gradient) + animation tuning for longer visibility

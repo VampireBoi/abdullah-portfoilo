@@ -44,7 +44,9 @@ const AboutSection = () => {
               {/* Profile image from public folder, base-aware for GitHub Pages */}
               <div
                 className="w-full h-full bg-cover bg-center"
-                style={{ backgroundImage: `url(${import.meta.env.BASE_URL}about me/profile pic 4.jpeg)` }}
+                style={{
+                  backgroundImage: `url("${encodeURI(`${import.meta.env.BASE_URL}about me/profile pic 4.jpeg`)}")`,
+                }}
               />
             </div>
           </div>

@@ -49,7 +49,7 @@ const IKAnimationToolPage = () => {
   const containerY = 0
 
   const tags = project.tags || []
-  const heroGif = project.backgroundGif ? withBase(project.backgroundGif) : null
+  const heroGif = withBase('projects/IK Animation Tool/showing the spider one.gif')
 
   return (
     <section
@@ -57,65 +57,67 @@ const IKAnimationToolPage = () => {
       ref={ref}
       className="section-container relative flex flex-col items-center justify-start px-6 pt-24 pb-20"
     >
-      <div className="absolute inset-0">
-        <DynamicBackgroundBar activeGif={heroGif} progress={progress} maxOpacity={0.6} />
-      </div>
-
       <div className="relative z-10 w-full max-w-6xl mx-auto">
-        <motion.div
-          className="w-full rounded-2xl overflow-hidden backdrop-blur-md border border-teal/40 mb-14"
-          style={{
-            opacity: containerOpacity,
-            y: containerY,
-            backgroundImage: `url(${withBase('projects/IK Animation Tool/showing the spider one.gif')})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="w-full h-full bg-dark-bg/75 px-6 md:px-10 py-8 md:py-10">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gold mb-4">
-              {project.title || 'IK Animation Tool'}
-            </h1>
-            <p className="text-sm md:text-base text-yellow/90 max-w-3xl">
-              A Unity editor tool for creating dynamic IK walk animations for a wide range of creatures, from spiders and
-              insects to four legged animals and humanoids.
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-x-10 gap-y-2 text-sm md:text-base text-yellow/90">
-              <div>
-                <span className="font-semibold text-gold">Year:</span> {project.timeframe || '2022'}
-              </div>
-              <div>
-                <span className="font-semibold text-gold">Dev time:</span> 4 days
-              </div>
-              <div>
-                <span className="font-semibold text-gold">Type:</span> Unity Editor Tool
-              </div>
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 rounded-full bg-dark-bg/70 border border-teal/40 text-xs md:text-sm text-yellow/90"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-6">
-              <a
-                href={project.githubUrl || 'https://github.com/VampireBoi'}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-md bg-teal/70 hover:bg-teal/90 text-dark-bg font-semibold text-sm md:text-base transition-colors border border-teal/40"
-              >
-                <span>View on GitHub</span>
-              </a>
-            </div>
+        <div className="relative mb-14 rounded-2xl overflow-hidden border border-teal/40">
+          <div className="absolute inset-0">
+            <DynamicBackgroundBar activeGif={heroGif} progress={1} maxOpacity={0.5} variant="hero" />
           </div>
-        </motion.div>
+
+          <motion.div
+            className="w-full"
+            style={{
+              opacity: containerOpacity,
+              y: containerY,
+              backgroundImage: `url(${withBase('projects/IK Animation Tool/showing the spider one.gif')})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
+            <div className="w-full h-full bg-dark-bg/40 px-6 md:px-10 py-8 md:py-10">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gold mb-4">
+                {project.title || 'IK Animation Tool'}
+              </h1>
+              <p className="text-sm md:text-base text-yellow/90 max-w-3xl">
+                A Unity editor tool for creating dynamic IK walk animations for a wide range of creatures, from spiders
+                and insects to four legged animals and humanoids.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-x-10 gap-y-2 text-sm md:text-base text-yellow/90">
+                <div>
+                  <span className="font-semibold text-gold">Year:</span> {project.timeframe || '2022'}
+                </div>
+                <div>
+                  <span className="font-semibold text-gold">Dev time:</span> 4 days
+                </div>
+                <div>
+                  <span className="font-semibold text-gold">Type:</span> Unity Editor Tool
+                </div>
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 rounded-full bg-dark-bg/70 border border-teal/40 text-xs md:text-sm text-yellow/90"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-6">
+                <a
+                  href={project.githubUrl || 'https://github.com/VampireBoi'}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2 rounded-md bg-teal/70 hover:bg-teal/90 text-dark-bg font-semibold text-sm md:text-base transition-colors border border-teal/40"
+                >
+                  <span>View on GitHub</span>
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
 
         <div className="space-y-14">
           <MediaBlock

@@ -307,6 +307,41 @@ src/
 
 ## Change Log
 
+### 2026-04-19 - GitHub Pages Deployment, Routing, Scroll & Hero Refinements
+- **GitHub Pages & Routing:**
+  - Confirmed deployment under the base path `/abdullah-portfoilo/` with Vite configured as `base: mode === 'production' ? '/abdullah-portfoilo/' : '/'`.
+  - Switched `App.jsx` to use `HashRouter` so all internal routes are hash-based and safe on GitHub Pages (e.g. `#/projects/ik-animation-tool`).
+  - Ensured all project image/GIF paths are base-aware by removing `public/` prefixes from `projects.json` and concatenating with `import.meta.env.BASE_URL` at usage sites.
+- **Asset Loading & Profile Image:**
+  - Normalized asset paths across `Header`, `IntroSection`, `WorkSection`, `ProjectCard`, and project pages to use `import.meta.env.BASE_URL` so images and PDFs load correctly both locally and on GitHub Pages.
+  - Updated the About section profile image to use an encoded, base-aware URL so spaces and special characters in the path are handled safely:
+    - `backgroundImage: url("${encodeURI(`${import.meta.env.BASE_URL}about me/profile pic 4.jpeg`)}")`.
+- **Project Detail Pages (IK Animation Tool & Stylized Art Style Pipeline):**
+  - Unified hero layouts for both project pages so they share the same structure and behavior:
+    - A single rounded container (`rounded-2xl overflow-hidden border border-teal/40`) wraps the `DynamicBackgroundBar` and the hero card, ensuring the animated background is clipped cleanly by the card corners.
+    - `DynamicBackgroundBar` is called with `progress={1}`, `maxOpacity={0.5}`, and `variant="hero"` to provide a dedicated, softer vignette and overlay style for project heroes.
+    - The hero card `motion.div` uses a project-specific GIF as its CSS `backgroundImage` with `backgroundSize: 'cover'` and `backgroundPosition: 'center'`, and a semi-transparent overlay (`bg-dark-bg/40`) for readability without heavy blur.
+  - **IK Animation Tool:** both the hero background bar and the intro card now use `showing the spider one.gif` as the source so the hero visual matches the intended asset.
+  - **Stylized Art Style Pipeline:** hero uses `art style showcase v1 compressed.gif` for the intro card background, with the same gradient and clipping behavior as the IK page.
+  - Tweaked the `hero` variant gradient in `DynamicBackgroundBar.jsx` (overlay class and RGBA stops) to make the vignette ~5% stronger while keeping the center of the image clear.
+- **Project Card Navigation Behavior:**
+  - Updated `ProjectCarousel` so **internal** project detail pages open in a **new tab** instead of navigating within the same tab:
+    - For `project.projectPage` values starting with `/projects/`, a full hash URL is built using the Vite base (e.g. ``${import.meta.env.BASE_URL}#/projects/ik-animation-tool``) and opened via `window.open(url, '_blank')`.
+    - External projects continue to use `window.open(project.projectPage, '_blank')` unchanged.
+  - This preserves the main page scroll position in the original tab while allowing deep dives into project pages.
+- **Scroll Behavior & Refresh Experience:**
+  - Removed global `html { scroll-behavior: smooth; }` from `index.css` so only intentional JS-driven smooth scroll remains (via `element.scrollIntoView({ behavior: 'smooth' })`).
+  - Implemented home-page scroll persistence in `HomePage` (inside `App.jsx`):
+    - On `/`, a `useLayoutEffect` restores the previous `window.scrollY` from `sessionStorage.homeScrollY` on initial load, **unless** navigation explicitly requested a section (via `location.state.scrollTo`).
+    - A `useEffect` attaches a `scroll` listener while on `/` that continuously updates `sessionStorage.homeScrollY` with the current scroll position.
+    - A separate effect continues to handle header-driven section jumps by reading `location.state.scrollTo` and calling `scrollIntoView({ behavior: 'smooth', block: 'start' })` for the target element.
+  - Net result:
+    - Manual refreshes on the main page generally return the user to the same section (including the Career section) without the long smooth animation previously caused by global CSS smooth scrolling.
+    - Header navigation and intro buttons still provide smooth scroll to their target sections.
+- **Career Section Stability:**
+  - Verified that `CareerSection` itself never calls `scrollTo`/`scrollIntoView`; its behavior is purely driven by `useScrollProgress` and Framer Motion.
+  - The earlier visible top-then-jump effect when refreshing at the Career section was traced to browser scroll restoration combined with global smooth scroll CSS; with CSS smooth scroll removed and explicit JS restoration in place, the Career section now behaves consistently with other sections.
+
 ### 2026-04-18 - Stylized Pipeline Page, Data Tweaks, and Resume/Favicon
 - Implemented the **Stylized Art Style Pipeline** project detail page at `/projects/stylized-art-style-pipeline` using the existing `MediaBlock`-based template:
   - New `StylizedArtStylePipelinePage` reads `project-5` from `projects.json` and mirrors the IK layout (hero bar, intro card, tags, GitHub button, 5 media blocks)

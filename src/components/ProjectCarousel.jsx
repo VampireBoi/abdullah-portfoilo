@@ -57,8 +57,10 @@ const ProjectCarousel = ({ projects, onActiveChange, sectionProgress = 1 }) => {
                 onActivate={() => setActiveIndex(index)}
                 onOpenProject={() => {
                   if (!project.projectPage) return
+
                   if (project.projectPage.startsWith('/projects/')) {
-                    navigate(project.projectPage)
+                    const url = `${import.meta.env.BASE_URL}#${project.projectPage}`
+                    window.open(url, '_blank')
                   } else {
                     window.open(project.projectPage, '_blank')
                   }
