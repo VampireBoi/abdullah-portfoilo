@@ -3,6 +3,8 @@ import { useScrollProgress } from '../hooks/useScrollProgress'
 import DynamicBackgroundBar from '../components/DynamicBackgroundBar'
 import data from '../data/projects.json'
 
+const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
+
 const MediaBlock = ({ title, align = 'left', children, imageSrc, imageAlt, caption, index = 0 }) => {
   const textFirst = align === 'left'
   const baseDelay = 0.03 + index * 0.07
@@ -47,7 +49,7 @@ const StylizedArtStylePipelinePage = () => {
   const containerY = 0
 
   const tags = project.tags || []
-  const heroGif = project.backgroundGif || null
+  const heroGif = project.backgroundGif ? withBase(project.backgroundGif) : null
 
   return (
     <section
@@ -65,7 +67,7 @@ const StylizedArtStylePipelinePage = () => {
           style={{
             opacity: containerOpacity,
             y: containerY,
-            backgroundImage: "url('/projects/Stylized Art Style Pipeline/art style showcase v1 compressed.gif')",
+            backgroundImage: `url(${withBase('projects/Stylized Art Style Pipeline/art style showcase v1 compressed.gif')})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -122,7 +124,7 @@ const StylizedArtStylePipelinePage = () => {
             title="What is the stylized art style pipeline?"
             align="left"
             index={0}
-            imageSrc="/projects/Stylized Art Style Pipeline/art style showcase v7.gif"
+            imageSrc={withBase('projects/Stylized Art Style Pipeline/art style showcase v7.gif')}
             imageAlt="Stylized art style pipeline overview"
             caption="Overview of the stylized multi layer post processing pipeline in action."
           >
@@ -144,7 +146,7 @@ const StylizedArtStylePipelinePage = () => {
             title="Multi layer architecture and depth compositing"
             align="right"
             index={1}
-            imageSrc="/projects/Stylized Art Style Pipeline/artstyle pipeline diagram.gif"
+            imageSrc={withBase('projects/Stylized Art Style Pipeline/artstyle pipeline diagram.gif')}
             imageAlt="Stylized scene showing layered depth compositing"
             caption="Diagram of the layered viewport setup and depth based compositing across the scene."
           >
@@ -166,7 +168,7 @@ const StylizedArtStylePipelinePage = () => {
             title="Per layer palettes and dot matrix screen effect"
             align="left"
             index={2}
-            imageSrc="/projects/Stylized Art Style Pipeline/art style showcase v3 compressed.gif"
+            imageSrc={withBase('projects/Stylized Art Style Pipeline/art style showcase v3 compressed.gif')}
             imageAlt="Stylized color grading and dot matrix effect"
             caption="Example of per layer color palettes combined with an optional dot matrix screen effect."
           >
@@ -188,7 +190,7 @@ const StylizedArtStylePipelinePage = () => {
             title="Bloom and lens flare for stylized highlights"
             align="right"
             index={3}
-            imageSrc="/projects/Stylized Art Style Pipeline/froggy.gif"
+            imageSrc={withBase('projects/Stylized Art Style Pipeline/froggy.gif')}
             imageAlt="Stylized highlights with bloom and lens flare"
             caption="Bright highlights enhanced with thresholded bloom and a screen space lens flare mask."
           >
@@ -210,7 +212,7 @@ const StylizedArtStylePipelinePage = () => {
             title="Outline shader and artist facing controls"
             align="left"
             index={4}
-            imageSrc="/projects/Stylized Art Style Pipeline/art style showcase v10.gif"
+            imageSrc={withBase('projects/Stylized Art Style Pipeline/art style showcase v10.gif')}
             imageAlt="Stylized outline shader and control panel"
             caption="Stylized outlines and artist facing controls used to tune the final look inside Godot."
           >

@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import ProjectCard from './ProjectCard'
 import { useActiveCard } from '../hooks/useActiveCard'
 
 const CARD_OFFSET = 320
 
 const ProjectCarousel = ({ projects, onActiveChange, sectionProgress = 1 }) => {
+  const navigate = useNavigate()
   const { items, activeIndex, activeProject, setActiveIndex, next, prev } = useActiveCard(projects)
 
   useEffect(() => {
@@ -54,7 +56,10 @@ const ProjectCarousel = ({ projects, onActiveChange, sectionProgress = 1 }) => {
                 sectionProgress={sectionProgress}
                 onActivate={() => setActiveIndex(index)}
                 onOpenProject={() => {
-                  if (project.projectPage) {
+                  if (!project.projectPage) return
+                  if (project.projectPage.startsWith('/projects/')) {
+                    navigate(project.projectPage)
+                  } else {
                     window.open(project.projectPage, '_blank')
                   }
                 }}

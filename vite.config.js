@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig(({ mode }) => ({
   plugins: [react()],
-  base: mode === 'production' ? '/abdullah-portfoilo' : '/',
+  base: mode === 'production' ? '/abdullah-portfoilo/' : '/',
   //base: "/abdullah-portfoilo",
 }))

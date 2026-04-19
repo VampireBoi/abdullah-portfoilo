@@ -61,7 +61,10 @@ const WorkSubsection = ({ title, filterKey, projects }) => {
               setActiveBackgroundWeight(0)
               return
             }
-            setActiveGif(project.backgroundGif || null)
+            const gifPath = project.backgroundGif
+              ? import.meta.env.BASE_URL + project.backgroundGif
+              : null
+            setActiveGif(gifPath)
             const weight =
               typeof project.backgroundWeight === 'number' ? project.backgroundWeight : 0.5
             setActiveBackgroundWeight(weight)

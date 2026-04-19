@@ -49,7 +49,7 @@ const IntroSection = () => {
       >
         <div className="relative w-full h-[800px] overflow-hidden">
           <img
-            src="/about me/complex animation from vr project v3 l.gif"
+            src={import.meta.env.BASE_URL + 'about me/complex animation from vr project v3 l.gif'}
             alt="Background animation"
             className="absolute inset-0 min-w-[1200px] w-full h-full object-cover max-w-none"
             style={{

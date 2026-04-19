@@ -20,6 +20,7 @@ const ProjectCard = ({ project, isActive, isNeighbor, sectionProgress = 1, onAct
   const rotateY = useTransform(x, [-80, 80], [-8, 8])
 
   const isLocked = project?.locked === true
+  const thumbnailSrc = project?.thumbnail ? import.meta.env.BASE_URL + project.thumbnail : ''
 
   const handleClick = () => {
     // When locked, card can still become active but must not navigate to project page
@@ -62,7 +63,7 @@ const ProjectCard = ({ project, isActive, isNeighbor, sectionProgress = 1, onAct
     >
       <div className="relative h-[60%] overflow-hidden">
         <img
-          src={project.thumbnail}
+          src={thumbnailSrc}
           alt={project.title}
           className="w-full h-full object-cover cursor-pointer"
           onClick={(e) => {

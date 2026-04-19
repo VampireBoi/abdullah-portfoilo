@@ -41,8 +41,11 @@ const AboutSection = () => {
           {/* Left: Profile photo */}
           <div className="flex justify-center md:justify-start w-full md:w-auto md:self-center">
             <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full bg-dark-bg/80 border-2 border-gold/70 shadow-lg shadow-gold/20 overflow-hidden flex items-center justify-center">
-              {/* Placeholder image */}
-              <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: "url('/about me/profile pic 4.jpeg')" }} />
+              {/* Profile image from public folder, base-aware for GitHub Pages */}
+              <div
+                className="w-full h-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${import.meta.env.BASE_URL}about me/profile pic 4.jpeg)` }}
+              />
             </div>
           </div>
 

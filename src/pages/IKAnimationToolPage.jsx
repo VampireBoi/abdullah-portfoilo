@@ -3,6 +3,8 @@ import { useScrollProgress } from '../hooks/useScrollProgress'
 import DynamicBackgroundBar from '../components/DynamicBackgroundBar'
 import data from '../data/projects.json'
 
+const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
+
 const MediaBlock = ({ title, align = 'left', children, imageSrc, imageAlt, caption, index = 0 }) => {
   const textFirst = align === 'left'
   const baseDelay = 0.03 + index * 0.07
@@ -47,7 +49,7 @@ const IKAnimationToolPage = () => {
   const containerY = 0
 
   const tags = project.tags || []
-  const heroGif = project.backgroundGif || null
+  const heroGif = project.backgroundGif ? withBase(project.backgroundGif) : null
 
   return (
     <section
@@ -65,7 +67,7 @@ const IKAnimationToolPage = () => {
           style={{
             opacity: containerOpacity,
             y: containerY,
-            backgroundImage: "url('/projects/IK Animation Tool/showing the spider one.gif')",
+            backgroundImage: `url(${withBase('projects/IK Animation Tool/showing the spider one.gif')})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -120,7 +122,7 @@ const IKAnimationToolPage = () => {
             title="What is the IK Animation Tool?"
             align="left"
             index={0}
-            imageSrc="/projects/IK Animation Tool/showing the dog one.gif"
+            imageSrc={withBase('projects/IK Animation Tool/showing the dog one.gif')}
             imageAlt="Creature walking using the IK Animation Tool"
             caption="Procedural walk cycle generated entirely by the IK Animation Tool."
           >
@@ -139,7 +141,7 @@ const IKAnimationToolPage = () => {
             title="Stepping logic driven by moving targets"
             align="right"
             index={1}
-            imageSrc="/projects/IK Animation Tool/closed shot of leg moving.gif"
+            imageSrc={withBase('projects/IK Animation Tool/closed shot of leg moving.gif')}
             imageAlt="Debug view of legs stepping using target points"
             caption="Each leg follows a moving target point and only steps when it drifts far enough away."
           >
@@ -159,7 +161,7 @@ const IKAnimationToolPage = () => {
             title="Second order motion for organic movement"
             align="left"
             index={2}
-            imageSrc="/projects/IK Animation Tool/second order system.gif"
+            imageSrc={withBase('projects/IK Animation Tool/second order system.gif')}
             imageAlt="Visualization of second order motion used for the IK legs"
             caption="Second order dynamics add spring, overshoot, and smoothing to the raw IK movement."
           >
@@ -179,7 +181,7 @@ const IKAnimationToolPage = () => {
             title="Automatic terrain adaptation and sound"
             align="right"
             index={3}
-            imageSrc="/projects/IK Animation Tool/walking on terrain.gif"
+            imageSrc={withBase('projects/IK Animation Tool/walking on terrain.gif')}
             imageAlt="Creature walking on uneven terrain"
             caption="IK feet automatically conform to uneven terrain using layer-filtered raycasts."
           >
@@ -198,7 +200,7 @@ const IKAnimationToolPage = () => {
             title="Editor controls and workflow"
             align="left"
             index={4}
-            imageSrc="/projects/IK Animation Tool/showing the ui.gif"
+            imageSrc={withBase('projects/IK Animation Tool/showing the ui.gif')}
             imageAlt="Unity inspector for the IK Animation Tool"
             caption="Custom Unity inspector exposing leg lists, timing, curves, layers, and sound controls."
           >
