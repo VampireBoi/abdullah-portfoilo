@@ -48,15 +48,18 @@ const IntroSection = () => {
         style={{ opacity: progress * 0.6 }}
       >
         <div className="relative w-full h-[800px] overflow-hidden">
-          <img
-            src={import.meta.env.BASE_URL + 'about me/complex animation from vr project v3 l.gif'}
-            alt="Background animation"
+          <video
+            src={import.meta.env.BASE_URL + 'about me/complex animation from vr project v3 l.webm'}
             className="absolute inset-0 min-w-[1200px] w-full h-full object-cover max-w-none"
             style={{
               objectPosition: 'center center',
               left: '50%',
               transform: 'translateX(-50%)',
             }}
+            autoPlay
+            muted
+            loop
+            playsInline
           />
           <div className="absolute inset-0 bg-dark-bg/60" />
           {/* Soft edge fading - vertical (top/bottom) */}
