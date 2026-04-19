@@ -21,6 +21,7 @@ const ProjectCard = ({ project, isActive, isNeighbor, sectionProgress = 1, onAct
 
   const isLocked = project?.locked === true
   const thumbnailSrc = project?.thumbnail ? import.meta.env.BASE_URL + project.thumbnail : ''
+  const isThumbnailVideo = project?.thumbnail && project.thumbnail.toLowerCase().endsWith('.webm')
 
   const handleClick = () => {
     // When locked, card can still become active but must not navigate to project page
@@ -62,17 +63,34 @@ const ProjectCard = ({ project, isActive, isNeighbor, sectionProgress = 1, onAct
       animate={{ scale, y: lift }}
     >
       <div className="relative h-[60%] overflow-hidden">
-        <img
-          src={thumbnailSrc}
-          alt={project.title}
-          className="w-full h-full object-cover cursor-pointer"
-          onClick={(e) => {
-            e.stopPropagation()
-            if (!isLocked && onOpenProject) {
-              onOpenProject()
-            }
-          }}
-        />
+        {isThumbnailVideo ? (
+          <video
+            src={thumbnailSrc}
+            className="w-full h-full object-cover cursor-pointer"
+            autoPlay
+            muted
+            loop
+            playsInline
+            onClick={(e) => {
+              e.stopPropagation()
+              if (!isLocked && onOpenProject) {
+                onOpenProject()
+              }
+            }}
+          />
+        ) : (
+          <img
+            src={thumbnailSrc}
+            alt={project.title}
+            className="w-full h-full object-cover cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation()
+              if (!isLocked && onOpenProject) {
+                onOpenProject()
+              }
+            }}
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-dark-bg/0 via-dark-bg/20 to-dark-bg/80" />
       </div>
 

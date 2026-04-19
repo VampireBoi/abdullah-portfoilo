@@ -215,11 +215,17 @@ Based on provided image reference (Cyberpunk/Vibrant aesthetic):
   - Achievements trimmed to key highlights (CS bachelor + 15k+ followers)
   - Career `subsections` now hide the Jobs column (`visible: false`) while keeping Education and Skills visible
   - Spoken languages list reduced to Arabic and English in `SKILL_CATEGORIES`
- - Hosting & assets (2026-04-19):
-   - All project thumbnails and GIFs are referenced without `public/` in `projects.json` and combined with `import.meta.env.BASE_URL` where used, so paths work both locally and on GitHub Pages.
-   - About profile image path updated to use `encodeURI` + `import.meta.env.BASE_URL` so it loads correctly on GitHub Pages despite spaces in the directory name.
-   - Global `html { scroll-behavior: smooth; }` removed from `index.css`; smooth scrolling is now only triggered intentionally via JS (`scrollIntoView({ behavior: 'smooth' })`).
-   - `HomePage` adds scroll persistence for `/` using `sessionStorage.homeScrollY` with `useLayoutEffect` + `useEffect`, while still honoring explicit section jumps via `location.state.scrollTo`.
+- Hosting & assets (2026-04-19):
+  - All project thumbnails and GIFs are referenced without `public/` in `projects.json` and combined with `import.meta.env.BASE_URL` where used, so paths work both locally and on GitHub Pages.
+  - About profile image path updated to use `encodeURI` + `import.meta.env.BASE_URL` so it loads correctly on GitHub Pages despite spaces in the directory name.
+  - Global `html { scroll-behavior: smooth; }` removed from `index.css`; smooth scrolling is now only triggered intentionally via JS (`scrollIntoView({ behavior: 'smooth' })`).
+  - `HomePage` adds scroll persistence for `/` using `sessionStorage.homeScrollY` with `useLayoutEffect` + `useEffect`, while still honoring explicit section jumps via `location.state.scrollTo`.
+- Media format & performance (2026-04-19, later pass):
+  - Replaced large hero and inline GIFs on the IK Animation Tool and Stylized Art Style Pipeline pages with `.webm` video files stored under `public/projects/...`, referenced via a base-aware helper (e.g. `withBase('projects/IK Animation Tool/showing the spider one.webm')`).
+  - Updated the `MediaBlock` components on both project pages to detect `.webm` sources and render them as `<video autoplay muted loop playsInline>`, while continuing to use regular `<img>` tags for non-video assets.
+  - Extended `DynamicBackgroundBar` to detect `.webm` paths and render those backgrounds as looping HTML5 video while preserving the `hero` variant gradient and vignette overlays; hero cards now rely entirely on `DynamicBackgroundBar` for animated backgrounds instead of setting their own `backgroundImage` CSS.
+  - Standardized `projects.json.backgroundGif` values so Work-section subsections now point to `.webm` clips (and removed the stray `public/` prefix from the IK entry), ensuring all animated backgrounds resolve correctly on GitHub Pages.
+  - Updated `ProjectCard` so project thumbnails can be either static images or `.webm` clips; `.webm` thumbnails autoplay (muted, looping, `playsInline`) inside the card while preserving the existing gradient overlay and click behavior.
 
 ## Development Timeline
 

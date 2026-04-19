@@ -8,6 +8,7 @@ const withBase = (path) => `${import.meta.env.BASE_URL}${path}`
 const MediaBlock = ({ title, align = 'left', children, imageSrc, imageAlt, caption, index = 0 }) => {
   const textFirst = align === 'left'
   const baseDelay = 0.03 + index * 0.07
+  const isVideo = imageSrc && imageSrc.toLowerCase().endsWith('.webm')
 
   return (
     <div className="grid md:grid-cols-2 gap-10 items-start">
@@ -30,7 +31,18 @@ const MediaBlock = ({ title, align = 'left', children, imageSrc, imageAlt, capti
       >
         <div className="w-full rounded-2xl overflow-hidden bg-dark-secondary border border-teal/40 aspect-video flex items-center justify-center">
           {imageSrc ? (
-            <img src={imageSrc} alt={imageAlt} className="w-full h-full object-cover" />
+            isVideo ? (
+              <video
+                src={imageSrc}
+                className="w-full h-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+            ) : (
+              <img src={imageSrc} alt={imageAlt} className="w-full h-full object-cover" />
+            )
           ) : (
             <span className="text-yellow/60 text-sm">Media placeholder</span>
           )}
@@ -49,7 +61,7 @@ const StylizedArtStylePipelinePage = () => {
   const containerY = 0
 
   const tags = project.tags || []
-  const heroGif = project.backgroundGif ? withBase(project.backgroundGif) : null
+  const heroMedia = project.backgroundGif ? withBase(project.backgroundGif) : null
 
   return (
     <section
@@ -60,20 +72,17 @@ const StylizedArtStylePipelinePage = () => {
       <div className="relative z-10 w-full max-w-6xl mx-auto">
         <div className="relative mb-14 rounded-2xl overflow-hidden border border-teal/40">
           <div className="absolute inset-0">
-            <DynamicBackgroundBar activeGif={heroGif} progress={1} maxOpacity={0.5} variant="hero" />
+            <DynamicBackgroundBar activeGif={heroMedia} progress={1} maxOpacity={0.5} variant="hero" />
           </div>
 
           <motion.div
-            className="w-full"
+            className="relative w-full"
             style={{
               opacity: containerOpacity,
               y: containerY,
-              backgroundImage: `url(${withBase('projects/Stylized Art Style Pipeline/art style showcase v1 compressed.gif')})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
             }}
           >
-            <div className="w-full h-full bg-dark-bg/40 px-6 md:px-10 py-8 md:py-10">
+            <div className="relative w-full h-full bg-dark-bg/40 px-6 md:px-10 py-8 md:py-10">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gold mb-4">
                 {project.title || 'Stylized Art Style Pipeline'}
               </h1>
@@ -126,7 +135,7 @@ const StylizedArtStylePipelinePage = () => {
             title="What is the stylized art style pipeline?"
             align="left"
             index={0}
-            imageSrc={withBase('projects/Stylized Art Style Pipeline/art style showcase v7.gif')}
+            imageSrc={withBase('projects/Stylized Art Style Pipeline/art style showcase v7.webm')}
             imageAlt="Stylized art style pipeline overview"
             caption="Overview of the stylized multi layer post processing pipeline in action."
           >
@@ -148,7 +157,7 @@ const StylizedArtStylePipelinePage = () => {
             title="Multi layer architecture and depth compositing"
             align="right"
             index={1}
-            imageSrc={withBase('projects/Stylized Art Style Pipeline/artstyle pipeline diagram.gif')}
+            imageSrc={withBase('projects/Stylized Art Style Pipeline/artstyle pipeline diagram.webm')}
             imageAlt="Stylized scene showing layered depth compositing"
             caption="Diagram of the layered viewport setup and depth based compositing across the scene."
           >
@@ -170,7 +179,7 @@ const StylizedArtStylePipelinePage = () => {
             title="Per layer palettes and dot matrix screen effect"
             align="left"
             index={2}
-            imageSrc={withBase('projects/Stylized Art Style Pipeline/art style showcase v3 compressed.gif')}
+            imageSrc={withBase('projects/Stylized Art Style Pipeline/art style showcase v3 compressed.webm')}
             imageAlt="Stylized color grading and dot matrix effect"
             caption="Example of per layer color palettes combined with an optional dot matrix screen effect."
           >
@@ -192,7 +201,7 @@ const StylizedArtStylePipelinePage = () => {
             title="Bloom and lens flare for stylized highlights"
             align="right"
             index={3}
-            imageSrc={withBase('projects/Stylized Art Style Pipeline/froggy.gif')}
+            imageSrc={withBase('projects/Stylized Art Style Pipeline/froggy.webm')}
             imageAlt="Stylized highlights with bloom and lens flare"
             caption="Bright highlights enhanced with thresholded bloom and a screen space lens flare mask."
           >
@@ -214,7 +223,7 @@ const StylizedArtStylePipelinePage = () => {
             title="Outline shader and artist facing controls"
             align="left"
             index={4}
-            imageSrc={withBase('projects/Stylized Art Style Pipeline/art style showcase v10.gif')}
+            imageSrc={withBase('projects/Stylized Art Style Pipeline/art style showcase v10.webm')}
             imageAlt="Stylized outline shader and control panel"
             caption="Stylized outlines and artist facing controls used to tune the final look inside Godot."
           >
