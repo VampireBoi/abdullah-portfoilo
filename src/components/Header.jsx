@@ -64,7 +64,7 @@ const Header = () => {
                 key={`${item.id}-${item.label}`}
                 onClick={() => {
                   if (item.isExternal) {
-                    window.open(import.meta.env.BASE_URL + 'about me/CV.pdf', '_blank')
+                    window.open(import.meta.env.BASE_URL + 'about me/CV (1).pdf', '_blank')
                   } else if (location.pathname === '/') {
                     scrollToSection(item.id)
                   } else {
