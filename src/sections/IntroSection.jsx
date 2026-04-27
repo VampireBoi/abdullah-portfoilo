@@ -105,7 +105,7 @@ const IntroSection = () => {
             y: 20 * (1 - textProgress),
           }}
         >
-          GAMEPLAY PROGRAMMER
+          TECHNICAL ARTIST
         </motion.h2>
 
         <div className="flex gap-6">

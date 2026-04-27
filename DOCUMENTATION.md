@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Personal portfolio website for Abdullah Homsi, a gameplay programmer and game designer with 8 years of experience.
+Personal portfolio website for Abdullah Homsi, a technical artist and gameplay programmer with 8 years of experience.
 
 ## Features & Implementation Status
 
@@ -35,7 +35,7 @@ Personal portfolio website for Abdullah Homsi, a gameplay programmer and game de
   - Centered content layout
   - Main headline: "HI, I'M ABDULLAH HOMSI"
   - Decorative line separator
-  - Title: "GAMEPLAY PROGRAMMER"
+  - Title: "TECHNICAL ARTIST"
   - Three CTA buttons: Work, Career, About
   - **Animation (0→1)**:
     - Line grows from center

@@ -3,13 +3,13 @@
 ## Important Decisions & Context
 
 ### Project Goal
-Create a dynamic, clean portfolio website for Abdullah Homsi to showcase game programming skills and find college/job opportunities as a gameplay programmer.
+Create a dynamic, clean portfolio website for Abdullah Homsi to showcase technical art and programming skills and find college/job opportunities as a technical artist and gameplay programmer.
 
 ### User Profile
 - **Name**: Abdullah Homsi
 - **Age**: 23 years old
 - **Experience**: Started making games at 15 (8 years experience)
-- **Role**: Gameplay Programmer & Designer
+- **Role**: Technical Artist & Gameplay Programmer
 - **Skills**: Nearly every game dev discipline, focusing on programming
 - **Goal**: Showcase programming skills for college/job applications
 
@@ -112,7 +112,7 @@ Based on provided image reference (Cyberpunk/Vibrant aesthetic):
 - ✅ Centered content layout
 - ✅ Headline: "HI, I'M ABDULLAH HOMSI"
 - ✅ Decorative line
-- ✅ Title: "GAMEPLAY PROGRAMMER"
+- ✅ Title: "TECHNICAL ARTIST"
 - ✅ Three buttons: Work, Career, About
 - ✅ Complex animation sequence (forward and reverse)
 - ⏳ Button click behaviors (pending section implementation)

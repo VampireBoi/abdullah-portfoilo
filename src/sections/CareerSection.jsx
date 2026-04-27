@@ -314,10 +314,9 @@ const SKILL_CATEGORIES = [
     title: 'Programming Languages',
     skills: [
       { name: 'C#', value: 85 },
-      { name: 'GD script', value: 90 },
+      { name: 'GD script', value: 80 },
       { name: 'C++', value: 20 },
       { name: 'python', value: 70 },
-      { name: 'javascript', value: 65 },
       { name: 'c', value: 50 },
       { name: 'html', value: 45 },
     ],
@@ -330,8 +329,7 @@ const SKILL_CATEGORIES = [
       { name: 'unreal engine', value: 50 },
       { name: 'godot', value: 85 },
       { name: 'pygame', value: 70 },
-      { name: 'construct', value: 65 },
-      { name: 'game maker', value: 25 },
+      { name: 'blender', value: 75 },
     ],
   },
   {

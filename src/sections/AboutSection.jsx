@@ -28,7 +28,7 @@ const AboutSection = () => {
     <section
       id="about"
       ref={ref}
-      className="section-container relative flex flex-col items-center justify-center px-6 pt-10 pb-12"
+      className="relative w-full flex flex-col items-center px-6 pt-12 pb-[28.5vh] md:pb-[38vh]"
     >
       <div className="relative z-10 w-full max-w-6xl mx-auto">
         <motion.div
@@ -60,7 +60,7 @@ const AboutSection = () => {
                 y: 12 * (1 - containerOpacity),
               }}
             >
-              Hi, I&apos;m Abdullah, a game developer with over 8 years of programming experience creating 2D, 3D, and VR games. Skilled in advanced graphics programming, game design, 3D modeling, music composition.
+              Hi, I&apos;m Abdullah, a technical artist and programmer with over 8 years of experience creating 2D, 3D, and VR games, focusing on tools, shaders, rendering pipelines, and VFX. Also experienced in game design, 3D modeling, and music composition.
             </motion.h2>
             <motion.div
               className="w-full h-[2px] origin-center mb-4"
