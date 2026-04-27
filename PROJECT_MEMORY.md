@@ -180,7 +180,7 @@ Based on provided image reference (Cyberpunk/Vibrant aesthetic):
 - Achievements come from an `ACHIEVEMENTS` array in `AboutSection.jsx` (e.g. CS bachelor graduate, over 15k followers across social media platforms)
 - Contact buttons come from a `CONTACTS` array with real profile links (LinkedIn, GitHub, Instagram, YouTube, itch.io) and `mailto:m.abdullahhomsi@gmail.com` for email
 - Section includes a `BACK TO THE TOP` button that smooth-scrolls back to the Intro section
-- Profile photo and contacts grid are vertically centered; vertical padding reduced so the section stays compact
+- Profile photo and contacts grid are vertically centered; vertical padding reduced so the section stays compact, with additional viewport-relative bottom padding (`pb-[28.5vh] md:pb-[38vh]`) so users can scroll far enough to see the About card's animation fully, even on tall portrait screens.
 - Header nav "Contacts" item scrolls directly to this About section
  - Profile photo now uses a base-aware, encoded URL for GitHub Pages compatibility (spaces handled via `encodeURI` and `import.meta.env.BASE_URL`).
 
@@ -204,10 +204,10 @@ Based on provided image reference (Cyberpunk/Vibrant aesthetic):
   - Renumbered/reordered IDs so `project-2` is Keep Tho Flow, `project-3` is Leafy Ascent, `project-4` is IK Animation Tool (internal page), and `project-5` is Stylized Art Style Pipeline (internal page)
   - Stylized pipeline project:
     - Thumbnail updated to `art style pipeline thumbnail compressed.gif`
-    - Added tag `graphics programming` to highlight advanced rendering/shader work
+    - Added tag `technical art` to highlight advanced rendering/shader work and its role as a stylized art pipeline
   - Added `project-7` (Working Progress) as a locked gamejam-style project with timeframe formatted as `2025 - Present`
 - Navigation & chrome:
-  - Header Resume button now opens the real CV at `/about me/CV.pdf` (from `public/about me/CV.pdf`)
+  - Header Resume button now opens the real CV at `/about me/CV (1).pdf` (from `public/about me/CV (1).pdf`)
   - Favicon in `index.html` updated to `/about me/logo_profile.jpg` (uses the provided logo image as the browser tab icon)
 - About & Career sections:
   - About profile photo now uses `/about me/profile pic 4.jpeg` instead of the older placeholder
@@ -229,6 +229,7 @@ Based on provided image reference (Cyberpunk/Vibrant aesthetic):
 
 ## Development Timeline
 
+- **2026-04-27**: Updated site branding and layout to better reflect the Technical Artist focus: changed the HTML document title to "Abdullah Homsi - Technical Artist", updated the header Resume button to point to `CV (1).pdf`, renamed the Stylized Art Style Pipeline project tag from `graphics programming` to `technical art` and added a `technical art` tag to the IK Animation Tool, tightened the vertical spacing between the Career and About sections by reducing Career's bottom padding, and reworked the About section to use viewport-relative bottom padding so visitors can scroll far enough to see the About card's animation fully on both desktop and tall portrait screens.
 - **2026-04-19**: Finalized GitHub Pages routing with `HashRouter` and base-aware asset paths, unified project hero backgrounds (clipping, gradient, and correct GIFs), updated Work carousel so internal project pages open in new tabs using hash URLs, removed global CSS smooth scroll, and added controlled home-page scroll persistence so manual refreshes generally restore the previous section without long animated jumps.
 - **2026-04-15**: Added per-subsection visibility flags for Work and Career, per-card timeframe/backgroundWeight/locked behavior, locked-card background clearing, odd-count carousel centering, tightened Career padding, and updated About content/links/profile photo docs
 - **2026-04-14**: Implemented About section (profile, achievements, contacts, back-to-top), tuned Career/Work scroll animations, and fixed ProjectCarousel/Header React warnings

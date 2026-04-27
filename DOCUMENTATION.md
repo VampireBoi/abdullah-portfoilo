@@ -22,7 +22,7 @@ Personal portfolio website for Abdullah Homsi, a technical artist and gameplay p
   - Sticky positioning (always visible)
   - Main button: "Abdullah Homsi" (larger, scrolls to intro)
   - Navigation buttons: About, Work, Career, Resume, Contacts
-  - Resume button opens the CV PDF from the public folder at `/about me/CV.pdf` in a new tab
+  - Resume button opens the CV PDF from the public folder at `/about me/CV (1).pdf` in a new tab
   - Custom animation: Bar fades in, then buttons slide from main button position
   - Animation duration: 350ms max
   - Scroll-based visibility control
@@ -259,7 +259,7 @@ src/
     - Skills bar charts (`type: 'skills'`)
   - Each subsection has a `visible` boolean; only visible subsections are rendered
   - Grid columns adapt on desktop based on visible count: 1, 2, or 3 columns
-  - Overall bottom padding reduced (`pb-10`) to eliminate extra space under the grid
+  - Overall bottom padding reduced (`pb-6`) to eliminate extra space under the grid
 - **Education/Jobs Timelines**:
   - Vertical roadmap-style layout
   - Oldest entry at bottom, most recent at top
@@ -289,7 +289,7 @@ src/
   - Right: contact grid
 - Mobile layout: columns stack vertically (photo → text/achievements → contacts)
 - **Content & Data**:
-  - Summary headline describing Abdullah as a game developer with **8+ years** of programming experience in 2D, 3D, and VR games, skilled in advanced graphics programming, game design, 3D modeling, and music composition
+  - Summary headline describing Abdullah as a **technical artist and programmer** with **8+ years** of experience creating 2D, 3D, and VR games, focusing on tools, shaders, rendering pipelines, and stylized VFX, plus experience in game design, 3D modeling, and music composition
   - Achievements are data-driven via an `ACHIEVEMENTS` array (e.g. CS bachelor graduate, over 15k followers across social media platforms)
   - Contacts are data-driven via a `CONTACTS` array with real links for:
     - LinkedIn, GitHub, Instagram, YouTube, and itch.io
@@ -306,6 +306,20 @@ src/
   - Smooth-scrolls back to the Intro section (`id="intro"`, or top of page fallback)
 
 ## Change Log
+
+### 2026-04-27 - Technical Art Tag, About/Career Layout & Title Update
+- **Branding & Title**:
+  - Updated `index.html` document title to `Abdullah Homsi - Technical Artist` so the browser tab matches the new portfolio branding.
+- **Project Tags**:
+  - Renamed the Stylized Art Style Pipeline project tag from `graphics programming` to `technical art` to better reflect its role as a stylized art/shader pipeline.
+  - Added a `technical art` tag to the IK Animation Tool project so it clearly surfaces as technical art tooling in the Work section and on its detail page.
+- **Career Section Layout & Skills**:
+  - Slightly tightened the vertical gap between the Career and About sections by reducing the Career section's bottom padding (`pb-6` instead of the earlier `pb-10`).
+  - Updated `SKILL_CATEGORIES` in `CareerSection.jsx` to better match the current CV: adjusted GD Script proficiency, removed older tools (e.g. Construct, Game Maker, JavaScript entry in programming languages), and emphasized engines and tools actually in use (Unity, Unreal Engine, Godot, Pygame, Blender).
+- **About Section Layout & Scroll Behaviour**:
+  - Removed the global `section-container` min-height from the About section so its height is driven by content instead of always filling the entire viewport.
+  - Switched the About section's bottom padding to use viewport-relative units (`pb-[28.5vh] md:pb-[38vh]`) so users can scroll far enough to see the About card's animation fully, including on tall portrait screens.
+  - Tuned vertical spacing so the About card no longer floats in excessive empty space on desktop, while still allowing the card and "BACK TO THE TOP" button to move comfortably within the viewport.
 
 ### 2026-04-19 - GitHub Pages Deployment, Routing, Scroll & Hero Refinements
 - **GitHub Pages & Routing:**
@@ -357,7 +371,7 @@ src/
   - Stylized pipeline project now has a compressed thumbnail (`art style pipeline thumbnail compressed.gif`) and a new `graphics programming` tag
   - Added `project-7` (**Working Progress**) as a locked gamejam project with timeframe `2025 - Present`
 - Navigation and chrome tweaks:
-  - Header "Resume" button now opens the real CV PDF at `/about me/CV.pdf` in a new tab
+  - Header "Resume" button now opens the real CV PDF at `/about me/CV (1).pdf` in a new tab
   - Favicon updated in `index.html` to use `/about me/logo_profile.jpg` instead of the default Vite icon
 - About/Career content adjustments:
   - About profile image now uses `/about me/profile pic 4.jpeg`
